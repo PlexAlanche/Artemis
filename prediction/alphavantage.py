@@ -20,7 +20,7 @@ async def main():
 
 asyncio.run(main())
 
-Path('stock.json').write_text(str(resp.json()).replace("'", '"'))
+Path('stock.json').write_text(str(resp.json()).replace("'", '"').replace('Meta Data', 'ds').replace('Time Series (Daily)', 'y'))
 
 df = pd.read_json('stock.json')
 
