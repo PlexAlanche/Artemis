@@ -2,6 +2,8 @@
 import aiohttp
 import asyncio
 from datetime import datetime, timedelta
+from pathlib import Path
+import pandas as pd
 
 symbol = "ibm"
 
@@ -17,3 +19,8 @@ async def main():
             print(await resp.json())
 
 asyncio.run(main())
+
+Path('stock.json').write_text(str(resp.json()).replace("'", '"'))
+
+df = pd.read_json('stock.json')
+
