@@ -17,10 +17,8 @@ async def main():
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
             print(await resp.json())
-
-asyncio.run(main())
-
-Path('stock.json').write_text(str(resp.json()).replace("'", '"').replace('Meta Data', 'ds').replace('Time Series (Daily)', 'y'))
+        Path('stock.json').write_text(str(resp.json()).replace("'", '"').replace('Meta Data', 'ds').replace('Time Series (Daily)', 'y'))
 
 df = pd.read_json('stock.json')
 
+asyncio.run(main())
